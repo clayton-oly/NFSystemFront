@@ -52,7 +52,10 @@ export class NotaFiscalListComponent implements OnInit {
           alert('Nota impressa e fechada!');
           this.carregarNotas();
         },
-        error: (err) => alert('Erro ao imprimir nota: ' + err.message)
+        error: (err: any) => {
+          const mensagem = err.error?.message || 'Erro desconhecido';
+          alert('Erro ao imprimir nota: ' + mensagem);
+        }
       });
     }
   }
