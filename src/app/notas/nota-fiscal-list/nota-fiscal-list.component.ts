@@ -42,8 +42,7 @@ export class NotaFiscalListComponent implements OnInit {
   }
 
   editarNota(nota: any): void {
-    // Exemplo de navegação para rota de edição (nota-fiscal/editar/:id)
-    this.router.navigate(['/notas/editar', nota.id]);
+    this.router.navigate(['/notas', nota.id, 'editar']);
   }
 
   imprimir(nota: NotaFiscal): void {

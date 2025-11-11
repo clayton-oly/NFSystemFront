@@ -1,18 +1,18 @@
-<div class="container mt-4">
+<div class="container">
   <h3>Nova Nota Fiscal</h3>
 
-  <form (ngSubmit)="salvar()" class="mt-3">
-    <div class="mb-3">
+  <form (ngSubmit)="salvar()" class="form-nova-nota">
+    <div class="number">
       <label for="numero" class="form-label">Número</label>
-      <input type="text" id="numero" [(ngModel)]="nota.numero" name="numero" class="form-control" required>
+      <input type="text" id="numero" [(ngModel)]="nota.numero" name="numero" class="form-control" readonly> 
     </div>
 
-    <div class="mb-3">
+    <div class="status">
       <label for="status" class="form-label">Status</label>
       <input type="text" id="status" [(ngModel)]="nota.status" name="status" class="form-control" readonly>
     </div>
 
-    <button type="submit" class="btn btn-success">Salvar e Continuar</button>
-    <button type="button" class="btn btn-secondary ms-2" (click)="voltar()">Cancelar</button>
+    <button type="submit" class="btn-salvar">Salvar e Continuar</button>
+    <button type="button" class="btn-cancelar" (click)="voltar()">Cancelar</button>
   </form>
 </div>

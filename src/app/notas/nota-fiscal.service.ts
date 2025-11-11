@@ -12,16 +12,19 @@ export class NotaFiscalService {
   constructor(private http: HttpClient) { }
 
   cadastrar(notaFiscal: NotaFiscal): Observable<NotaFiscal> {
-    console.log(notaFiscal, "vou tentar registrar")
     return this.http.post<NotaFiscal>(`${this.apiUrl}`, notaFiscal);
+  }
+
+  atualizarNota(id: number, notaFiscal: NotaFiscal): Observable<NotaFiscal> {
+    return this.http.put<NotaFiscal>(`${this.apiUrl}/${id}`, notaFiscal);
   }
 
   getNotas(): Observable<NotaFiscal[]> {
     return this.http.get<NotaFiscal[]>(`${this.apiUrl}`);
   }
 
-  getNotaById(): Observable<NotaFiscal[]> {
-    return this.http.get<NotaFiscal[]>(`${this.apiUrl}`);
+  getNotaById(id: number): Observable<NotaFiscal> {
+    return this.http.get<NotaFiscal>(`${this.apiUrl}/${id}`);
   }
 
   imprimir(id: number): Observable<void> {

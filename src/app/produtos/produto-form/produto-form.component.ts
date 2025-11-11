@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProdutoService } from '../produto.service';
@@ -18,7 +18,8 @@ export class ProdutoFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private produtoService: ProdutoService,
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) { }
 
 
@@ -31,7 +32,12 @@ export class ProdutoFormComponent implements OnInit {
   }
 
   salvar(): void {
-    if (this.produtoForm.invalid) return;
+    if (this.produtoForm.invalid) {
+      this.produtoForm.markAllAsTouched();
+      this.cd.detectChanges();
+      return;
+
+    }
 
     const produto: Produto = this.produtoForm.value;
     this.produtoService.cadastrar(produto).subscribe({

@@ -1,5 +1,8 @@
+import { ItemNota } from "./item-nota.model";
+
 export interface NotaFiscal {
   id?: number;
-  numero: string;
+  numero: number;
   status: 'Aberta' | 'Fechada';
+  itens?: ItemNota[];
 }

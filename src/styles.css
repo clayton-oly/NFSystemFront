@@ -1,1 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  font-family: "Inter", "Poppins", sans-serif;
+  padding: 2em;
+  margin-top: 1em;
+}
+
+:root {
+  /* ======= Paleta ======= */
+  --clr-bg: #f4f6f8;
+  --clr-surface: #ffffff;
+  --clr-border: #dfe3e8;
+  --clr-text: #1a1f36;
+  --clr-muted: #6b7280;
+  --clr-accent: #0d4194;
+  --clr-success: #16a34a;
+  --clr-danger: #ef4444;
+  --clr-warning: #24afff;
+  --clr-secondary: #9ca3af;
+  --clr-shadow: rgba(0, 0, 0, 0.06);
+}
+
+ul{
+  list-style: none !important;
+  padding: 0;
+  margin: 0;
+}
