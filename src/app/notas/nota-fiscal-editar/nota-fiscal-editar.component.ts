@@ -45,7 +45,7 @@ export class NotaFiscalEditarComponent implements OnInit {
     });
 
     this.itemForm = this.fb.group({
-      produtoSelecionado: [null, Validators.required]
+      produtoSelecionado: ['', Validators.required]
     });
   }
 

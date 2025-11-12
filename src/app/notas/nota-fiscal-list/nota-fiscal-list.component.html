@@ -31,19 +31,17 @@
         <td>{{ nota.status }}</td>
         <td>
           <div class="btn-imp-exc">
-            <button
-              class="btn-editar"
-              [disabled]="nota.status !== 'Aberta'"
-              (click)="editarNota(nota)"
-            >
+            <button class="btn-editar" [disabled]="nota.status !== 'Aberta'" (click)="editarNota(nota)">
               Editar
             </button>
-            <button
-              class="btn-imprimir"
-              [disabled]="nota.status !== 'Aberta'"
-              (click)="imprimir(nota)"
-            >
-              Imprimir
+            <button class="btn-imprimir" [disabled]="nota.status !== 'Aberta' || nota.processando"
+              (click)="imprimir(nota)">
+              <ng-container *ngIf="!nota.processando; else carregando">
+                Imprimir
+              </ng-container>
+              <ng-template #carregando>
+                <span class="spinner"></span> Processando...
+              </ng-template>
             </button>
           </div>
         </td>

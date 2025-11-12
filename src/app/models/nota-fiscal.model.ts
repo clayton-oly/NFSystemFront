@@ -5,4 +5,5 @@ export interface NotaFiscal {
   numero: number;
   status: 'Aberta' | 'Fechada';
   itens?: ItemNota[];
+  processando?: boolean;
 }

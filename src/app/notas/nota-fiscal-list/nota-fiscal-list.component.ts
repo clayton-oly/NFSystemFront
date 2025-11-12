@@ -46,15 +46,18 @@ export class NotaFiscalListComponent implements OnInit {
 
   imprimir(nota: NotaFiscal): void {
     if (confirm('Deseja realmente imprimir esta nota?')) {
+      nota.processando = true; 
+
       this.notaService.imprimir(nota.id!).subscribe({
         next: () => {
           alert('Nota impressa e fechada!');
-          this.carregarNotas();
+          this.carregarNotas(); 
         },
         error: (err: any) => {
+          nota.processando = false;
           const mensagem = err.error?.message || 'Erro desconhecido';
           alert('Erro ao imprimir nota: ' + mensagem);
-        }
+        },
       });
     }
   }

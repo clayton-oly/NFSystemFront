@@ -1,84 +1,84 @@
 <div class="container">
 
-    <div class="title">
-      <ul>
-        <li>
-          <p>
-            Edição da Nota Fiscal Nº {{ nota?.numero }}
-          </p>
-        </li>
-      </ul>
-    </div>
-    <form [formGroup]="notaForm" class="card">
-      <div class="row">
-        <div class="formulario">
-          <label class="form-number">Número</label>
-          <input type="text" formControlName="numero" class="form-control" />
-        </div>
-
-        <div class="col">
-          <label class="form-status">Status</label>
-          <input type="text" formControlName="status" class="form-control" />
-        </div>
-      </div>
-    </form>
-
-    <hr />
-    <div class="title-nota">
-      <ul>
-        <li>
-          <p>
-            Itens da Nota
-          </p>
-        </li>
-      </ul>
-    </div>
-
-
-    <form [formGroup]="itemForm" (ngSubmit)="adicionarItem()" *ngIf="!notaFechada" class="add-item">
-      <select formControlName="produtoSelecionado" class="select" >
-       <option value="" >Selecione um produto</option>
-        <option *ngFor="let p of produtos" [value]="p.id">{{ p.descricao }}</option>
-      </select>
-
-      <button type="submit" class="btn-adicionar" [disabled]="!itemForm.valid">
-        Adicionar
-      </button>
-    </form>
-
-    <div class="table-responsive">
-      <table class="table">
-        <thead class="table-dark">
-          <tr>
-            <th>Produto</th>
-            <th>Quantidade</th>
-            <th>Ações</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of itens; let i = index">
-            <td>{{ item.produto?.descricao }}</td>
-            <td>
-              <input type="number" min="1" [(ngModel)]="item.quantidade" [disabled]="notaFechada" class="control"
-                name="quantidade{{ i }}" />
-            </td>
-            <td>
-              <button class="btn-remover" (click)="removerItem(i)" [disabled]="notaFechada">
-                Remover
-              </button>
-            </td>
-          </tr>
-          <tr *ngIf="itens.length === 0">
-            <td colspan="3" class="text">Nenhum item adicionado ainda</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="text-end">
-      <button class="btn-salvar" (click)="salvar()" [disabled]="notaFechada || itens.length === 0">
-        Salvar
-      </button>
-      <button class="btn-voltar" (click)="voltar()">Voltar</button>
-    </div>
+  <div class="title">
+    <ul>
+      <li>
+        <p>
+          Edição da Nota Fiscal Nº {{ nota.numero }}
+        </p>
+      </li>
+    </ul>
   </div>
+  <form [formGroup]="notaForm" class="card">
+    <div class="row">
+      <div class="formulario">
+        <label class="form-number">Número</label>
+        <input type="text" formControlName="numero" class="form-control" />
+      </div>
+
+      <div class="col">
+        <label class="form-status">Status</label>
+        <input type="text" formControlName="status" class="form-control" />
+      </div>
+    </div>
+  </form>
+
+  <hr />
+  <div class="title-nota">
+    <ul>
+      <li>
+        <p>
+          Itens da Nota
+        </p>
+      </li>
+    </ul>
+  </div>
+
+
+  <form [formGroup]="itemForm" (ngSubmit)="adicionarItem()" *ngIf="!notaFechada" class="add-item">
+    <select formControlName="produtoSelecionado" class="select">
+      <option value="" disabled selected>Selecione um produto</option>
+      <option *ngFor="let p of produtos" [value]="p.id">{{ p.descricao }}</option>
+    </select>
+
+    <button type="submit" class="btn-adicionar" [disabled]="!itemForm.valid">
+      Adicionar
+    </button>
+  </form>
+
+  <div class="table-responsive">
+    <table class="table">
+      <thead class="table-dark">
+        <tr>
+          <th>Produto</th>
+          <th>Quantidade</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of itens; let i = index">
+          <td>{{ item.produto?.descricao }}</td>
+          <td>
+            <input type="number" min="1" [(ngModel)]="item.quantidade" [disabled]="notaFechada" class="control"
+              name="quantidade{{ i }}" />
+          </td>
+          <td>
+            <button class="btn-remover" (click)="removerItem(i)" [disabled]="notaFechada">
+              Remover
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="itens.length === 0">
+          <td colspan="3" class="text">Nenhum item adicionado ainda</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="text-end">
+    <button class="btn-salvar" (click)="salvar()" [disabled]="notaFechada || itens.length === 0">
+      Salvar
+    </button>
+    <button class="btn-voltar" (click)="voltar()">Voltar</button>
+  </div>
+</div>
