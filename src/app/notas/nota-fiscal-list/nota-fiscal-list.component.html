@@ -3,9 +3,7 @@
     <div class="title-nt">
       <ul>
         <li>
-          <p>
-               Notas Fiscais
-          </p>
+          <p>Notas Fiscais</p>
         </li>
       </ul>
     </div>
@@ -19,7 +17,7 @@
     </div>
   </div>
 
-  <table class="table-nsa">
+  <table class="table-nsa" *ngIf="notas && notas.length > 0; else semNotas">
     <thead class="table-light">
       <tr>
         <th>Número</th>
@@ -33,15 +31,27 @@
         <td>{{ nota.status }}</td>
         <td>
           <div class="btn-imp-exc">
-          <button class="btn-editar" [disabled]="nota.status !== 'Aberta'" (click)="editarNota(nota)">
-            Editar
-          </button>
-          <button class="btn-imprimir" [disabled]="nota.status !== 'Aberta'" (click)="imprimir(nota)">
-           Imprimir
-          </button>  
+            <button
+              class="btn-editar"
+              [disabled]="nota.status !== 'Aberta'"
+              (click)="editarNota(nota)"
+            >
+              Editar
+            </button>
+            <button
+              class="btn-imprimir"
+              [disabled]="nota.status !== 'Aberta'"
+              (click)="imprimir(nota)"
+            >
+              Imprimir
+            </button>
           </div>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <ng-template #semNotas>
+    <p class="sem-registros">Nenhuma nota encontrada.</p>
+  </ng-template>
 </div>

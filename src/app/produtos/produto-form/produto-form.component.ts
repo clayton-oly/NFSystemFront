@@ -36,19 +36,30 @@ export class ProdutoFormComponent implements OnInit {
       this.produtoForm.markAllAsTouched();
       this.cd.detectChanges();
       return;
-
     }
 
     const produto: Produto = this.produtoForm.value;
+
     this.produtoService.cadastrar(produto).subscribe({
       next: () => {
         alert('✅ Produto cadastrado com sucesso!');
         this.router.navigate(['/']);
       },
-      error: err => {
-        console.error(err);
-        alert('❌ Erro ao salvar produto.');
+      error: (err) => {
+        console.error('Erro ao cadastrar produto:', err);
+      
+        let mensagem: string;
+      
+        if (err.status === 0 || err.error instanceof ProgressEvent) {
+          mensagem = '❌ Não foi possível conectar ao servidor.';
+        } 
+        else {
+          mensagem = err?.error?.message || err?.error || '❌ Erro ao salvar produto.';
+        }
+      
+        alert(mensagem);
       }
+      
     });
   }
 

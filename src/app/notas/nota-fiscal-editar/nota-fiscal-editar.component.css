@@ -1,0 +1,263 @@
+:root {
+    --clr-bg: #f4f6f8;
+    --clr-surface: #ffffff;
+    --clr-border: #dfe3e8;
+    --clr-text: #1a1f36;
+    --clr-muted: #6b7280;
+    --clr-accent: #0d4194;
+    --clr-success: #16a34a;
+    --clr-danger: #ef4444;
+    --clr-warning: #24afff;
+    --clr-secondary: #9ca3af;
+    --clr-shadow: rgba(0, 0, 0, 0.06);
+}
+
+.container {
+    background: var(--clr-bg);
+    padding: 2wem;
+    border-radius: 1em;
+    color: var(--clr-text);
+    max-width: 1300px;
+    margin: 0 auto;
+    border-radius: 16px;
+    padding: 2.5em;
+    box-shadow: 0 8px 25px var(--clr-shadow);
+    transition: all 0.3s ease;
+    height: 100%;
+
+    .title,
+    .title-nota {
+        background: var(--clr-surface);
+        border: 1px solid var(--clr-border);
+        border-radius: 0.75em;
+        box-shadow: 0 2px 6px var(--clr-shadow);
+        padding: 1em 1.5em;
+        margin-bottom: 1.5em;
+
+        ul {
+
+            li p {
+                font-size: 1.2em;
+                font-weight: 600;
+                color: var(--clr-accent);
+                margin: 0;
+            }
+        }
+    }
+
+    .card {
+        background: var(--clr-surface);
+        border: 1px solid var(--clr-border);
+        border-radius: 0.75em;
+        box-shadow: 0 2px 8px var(--clr-shadow);
+        padding: 1.5em;
+        margin-bottom: 2em;
+
+        .row {
+            display: flex;
+            gap: 1.5em;
+            flex-wrap: wrap;
+        }
+
+        label {
+            font-weight: 600;
+            color: var(--clr-text);
+            margin-bottom: 0.3em;
+            display: block;
+        }
+
+        input {
+            border: 1px solid var(--clr-border);
+            border-radius: 0.5em;
+            padding: 0.6em;
+            width: 100%;
+            font-size: 0.95em;
+            color: var(--clr-text);
+            background: var(--clr-surface);
+            transition: border 0.2s ease;
+
+            &:focus {
+                border-color: var(--clr-accent);
+                outline: none;
+            }
+
+            &:disabled {
+                background: var(--clr-bg);
+                color: var(--clr-muted);
+            }
+        }
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid var(--clr-border);
+        margin: 2em 0;
+    }
+
+    .add-item {
+        display: flex;
+        align-items: center;
+        gap: 1em;
+        flex-wrap: wrap;
+        margin-bottom: 2em;
+
+        .select {
+            border: 1px solid var(--clr-border);
+            border-radius: 0.5em;
+            padding: 0.6em;
+            background: var(--clr-surface);
+            color: var(--clr-text);
+            font-size: 0.95em;
+            width: 300px;
+            transition: border 0.2s ease;
+
+            &:focus {
+                border-color: var(--clr-accent);
+                outline: none;
+            }
+        }
+
+        .btn-adicionar {
+            background: var(--clr-success);
+            color: var(--clr-bg);
+            border: none;
+            border-radius: 0.5em;
+            padding: 0.6em 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: var(--clr-warning);
+            }
+
+            &:disabled {
+                background: var(--clr-secondary);
+                cursor: not-allowed;
+            }
+        }
+    }
+
+    .table {
+        width: 100%;
+        border-collapse: collapse;
+        background: var(--clr-surface);
+        border: 1px solid var(--clr-border);
+        border-radius: 0.75em;
+        box-shadow: 0 2px 8px var(--clr-shadow);
+        overflow: hidden;
+
+        thead {
+            background: var(--clr-accent);
+            color: var(--clr-bg);
+
+            th {
+                padding: 0.8em;
+                text-align: center;
+                font-weight: 600;
+                font-size: 0.95em;
+            }
+        }
+
+        tbody {
+            tr {
+                border-top: 1px solid var(--clr-border);
+
+                &:hover {
+                    background: var(--clr-border);
+                }
+
+                td {
+                    padding: 0.75em;
+                    text-align: center;
+                }
+
+                .control {
+                    width: 100px;
+                    text-align: center;
+                    border: 1px solid var(--clr-border);
+                    border-radius: 0.5em;
+                    padding: 0.4em;
+
+                    &:focus {
+                        border-color: var(--clr-accent);
+                        outline: none;
+                    }
+
+                    &:disabled {
+                        background: var(--clr-bg);
+                        color: var(--clr-muted);
+                    }
+                }
+
+                .btn-remover {
+                    background: var(--clr-danger);
+                    color: var(--clr-bg);
+                    border: none;
+                    border-radius: 0.5em;
+                    padding: 0.5em 1em;
+                    font-weight: 600;
+                    cursor: pointer;
+                    transition: background 0.2s ease;
+
+                    &:hover {
+                        background: var(--clr-text);
+                    }
+
+                    &:disabled {
+                        background: var(--clr-secondary);
+                        cursor: not-allowed;
+                    }
+                }
+            }
+
+            .text {
+                color: var(--clr-muted);
+                font-style: italic;
+                text-align: center;
+            }
+        }
+    }
+
+    .text-end {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1em;
+        margin-top: 2em;
+
+        .btn-salvar {
+            background: var(--clr-accent);
+            color: var(--clr-bg);
+            border: none;
+            border-radius: 0.5em;
+            padding: 0.7em 1.3em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: var(--clr-text);
+            }
+
+            &:disabled {
+                background: var(--clr-secondary);
+                cursor: not-allowed;
+            }
+        }
+
+        .btn-voltar {
+            background: var(--clr-secondary);
+            color: var(--clr-bg);
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.7rem 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background: var(--clr-muted);
+            }
+        }
+    }
+}

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NotaFiscalService } from '../nota-fiscal.service';
 import { CommonModule } from '@angular/common';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProdutoService } from '../../produtos/produto.service';
 import { Produto } from '../../models/produto.model';
 import { NotaFiscal } from '../../models/nota-fiscal.model';

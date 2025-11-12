@@ -1,81 +1,84 @@
-<div class="container mt-4">
-  <h2 class="mb-4 text-center">
-    ✏️ Edição da Nota Fiscal Nº {{ nota?.numero }}
-  </h2>
+<div class="container">
 
-  <form [formGroup]="notaForm" class="card shadow-sm p-4 mb-4">
-    <div class="row g-3">
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Número</label>
-        <input type="text" formControlName="numero" class="form-control" />
-      </div>
-
-      <div class="col-md-6">
-        <label class="form-label fw-semibold">Status</label>
-        <input type="text" formControlName="status" class="form-control" />
-      </div>
+    <div class="title">
+      <ul>
+        <li>
+          <p>
+            Edição da Nota Fiscal Nº {{ nota?.numero }}
+          </p>
+        </li>
+      </ul>
     </div>
-  </form>
+    <form [formGroup]="notaForm" class="card">
+      <div class="row">
+        <div class="formulario">
+          <label class="form-number">Número</label>
+          <input type="text" formControlName="numero" class="form-control" />
+        </div>
 
-  <hr />
+        <div class="col">
+          <label class="form-status">Status</label>
+          <input type="text" formControlName="status" class="form-control" />
+        </div>
+      </div>
+    </form>
 
-  <h4 class="mb-3">🧾 Itens da Nota</h4>
+    <hr />
+    <div class="title-nota">
+      <ul>
+        <li>
+          <p>
+            Itens da Nota
+          </p>
+        </li>
+      </ul>
+    </div>
 
-  <form
-    [formGroup]="itemForm"
-    (ngSubmit)="adicionarItem()"
-    *ngIf="!notaFechada"
-    class="d-flex align-items-center mb-3 gap-2 flex-wrap"
-  >
-    <select formControlName="produtoSelecionado" class="form-select" style="width: 300px;">
-      <option value="">Selecione um produto</option>
-      <option *ngFor="let p of produtos" [value]="p.id">{{ p.descricao }}</option>
-    </select>
 
-    <button type="submit" class="btn btn-success" [disabled]="!itemForm.valid">
-      ➕ Adicionar
-    </button>
-  </form>
+    <form [formGroup]="itemForm" (ngSubmit)="adicionarItem()" *ngIf="!notaFechada" class="add-item">
+      <select formControlName="produtoSelecionado" class="select" >
+       <option value="" >Selecione um produto</option>
+        <option *ngFor="let p of produtos" [value]="p.id">{{ p.descricao }}</option>
+      </select>
 
-  <div class="table-responsive">
-    <table class="table table-striped align-middle text-center">
-      <thead class="table-dark">
-        <tr>
-          <th>Produto</th>
-          <th style="width: 130px;">Quantidade</th>
-          <th style="width: 120px;">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of itens; let i = index">
-          <td>{{ item.produto?.descricao }}</td>
-          <td>
-            <input
-              type="number"
-              min="1"
-              [(ngModel)]="item.quantidade"
-              [disabled]="notaFechada"
-              class="form-control text-center"
-              name="quantidade{{ i }}"
-            />
-          </td>
-          <td>
-            <button class="btn btn-danger btn-sm" (click)="removerItem(i)" [disabled]="notaFechada">
-              🗑 Remover
-            </button>
-          </td>
-        </tr>
-        <tr *ngIf="itens.length === 0">
-          <td colspan="3" class="text-muted fst-italic">Nenhum item adicionado ainda</td>
-        </tr>
-      </tbody>
-    </table>
+      <button type="submit" class="btn-adicionar" [disabled]="!itemForm.valid">
+        Adicionar
+      </button>
+    </form>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of itens; let i = index">
+            <td>{{ item.produto?.descricao }}</td>
+            <td>
+              <input type="number" min="1" [(ngModel)]="item.quantidade" [disabled]="notaFechada" class="control"
+                name="quantidade{{ i }}" />
+            </td>
+            <td>
+              <button class="btn-remover" (click)="removerItem(i)" [disabled]="notaFechada">
+                Remover
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="itens.length === 0">
+            <td colspan="3" class="text">Nenhum item adicionado ainda</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="text-end">
+      <button class="btn-salvar" (click)="salvar()" [disabled]="notaFechada || itens.length === 0">
+        Salvar
+      </button>
+      <button class="btn-voltar" (click)="voltar()">Voltar</button>
+    </div>
   </div>
-
-  <div class="mt-4 text-end">
-    <button class="btn btn-primary me-2" (click)="salvar()" [disabled]="notaFechada || itens.length === 0">
-      💾 Salvar
-    </button>
-    <button class="btn btn-secondary" (click)="voltar()">⬅️ Voltar</button>
-  </div>
-</div>

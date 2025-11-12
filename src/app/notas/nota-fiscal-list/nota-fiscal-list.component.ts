@@ -26,7 +26,6 @@ export class NotaFiscalListComponent implements OnInit {
   carregarNotas(): void {
     this.notaService.getNotas().subscribe({
       next: (res) => {
-        console.log('📦 Notas carregadas:', res);
         this.notas = res;
       },
       error: (err) => console.error('❌ Erro ao carregar notas', err)

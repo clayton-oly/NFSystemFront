@@ -27,23 +27,24 @@ export class NotaFiscalNovaComponent implements OnInit {
   salvar(): void {
     this.notaService.cadastrar(this.nota).subscribe({
       next: (res) => {
-        alert('Nota criada com sucesso!');
-        this.router.navigate(['/']); 
+        alert('✅ Nota criada com sucesso!');
+        this.router.navigate(['/']);
       },
-      error: (err) => console.error('Erro ao criar nota:', err)
+      error: (err) => {
+        console.error('❌ Erro ao criar nota:', err);
+        alert('❌ Não foi possível conectar ao servidor.');
+      }
     });
   }
 
-  
-getProximoNumero(): void {
-  this.notaService.getProximoNumero().subscribe({
-    next: (numero) => {
-      console.log('Número retornado:', numero);
-      this.nota.numero = numero
-    },
-    error: (err) => console.error('Erro na chamada da API:', err)
-  });
-}
+  getProximoNumero(): void {
+    this.notaService.getProximoNumero().subscribe({
+      next: (numero) => {
+        this.nota.numero = numero
+      },
+      error: (err) => console.error('Erro na chamada da API:', err)
+    });
+  }
 
   voltar(): void {
     this.router.navigate(['/']);
